@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  bot:
+    build: .
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - veilnet
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: veil
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - veilnet
+  redis:
+    image: redis:7-alpine
+    networks:
+      - veilnet
+volumes:
+  pgdata:
+networks:
+  veilnet:
