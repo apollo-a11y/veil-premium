@@ -1,9 +1,0 @@
-version: '3.8'
-services:
-  bot:
-    command: npm run dev
-    volumes:
-      - .:/app
-      - /app/node_modules
-    environment:
-      NODE_ENV: development
