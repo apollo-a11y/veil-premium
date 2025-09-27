@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  bot:
+    build: .
+    env_file: .env
+    depends_on:
+      - postgres
+      - redis
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: veil
+      POSTGRES_PASSWORD: veilpass
+      POSTGRES_DB: veil
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  redis:
+    image: redis:7-alpine
+volumes:
+  pgdata:
